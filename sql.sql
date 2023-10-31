@@ -13,7 +13,7 @@ primary key (iduser),
 unique (email)
 );
 alter table user  add unique index apikey_unique (apikey);
-INSERT INTO `user` VALUES (1,'teste','a6573@alunos.ipca.pt','SlZ1QXBYZEcrY0FGY21mWDNUT2pQdz09','sdfsdfsd',0,'2023-10-28 18:51:49','2023-10-28 18:53:02');
+INSERT INTO `user` VALUES (1,'Admin','admin@alunos.ipca.pt','SlZ1QXBYZEcrY0FGY21mWDNUT2pQdz09','a4b728c805a50b7d81115ce5d10a39d8',0,'2023-10-28 18:51:49','2023-10-28 18:53:02');
 
 create table `uc` (
 iduc bigint not null auto_increment,
