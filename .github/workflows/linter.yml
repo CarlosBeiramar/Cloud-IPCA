@@ -16,5 +16,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run PHP Linter
-        run: php -l .
+      - name: Run PSR-2 checks
+        run: composer global require "squizlabs/php_codesniffer=*"
