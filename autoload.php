@@ -9,5 +9,5 @@ spl_autoload_register(function ($className) {
         require_once($filename);
         $className = $className[0] == DIRECTORY_SEPARATOR ? $className : DIRECTORY_SEPARATOR . $className;
     }
-} );
+});
 require_once("vendor/autoload.php");
