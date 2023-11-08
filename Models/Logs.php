@@ -2,11 +2,10 @@
 
 namespace Models;
 
-use \Config\Database;
+use Config\Database;
 
 class Logs
 {
-
     public int $idlog;
     public ?int $iduser;
     public ?string $ip;
