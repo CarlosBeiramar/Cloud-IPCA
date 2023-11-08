@@ -5,7 +5,7 @@ namespace Controllers;
 use \Libraries\Response;
 use \Libraries\Encrypt;
 use \Models\User;
-use \Libraries\Logs;
+use \Libraries\Logs
 
 class AuthController
 {
