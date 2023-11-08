@@ -22,6 +22,6 @@ jobs:
       - name: Install PHP_CodeSniffer
         run: composer global require "squizlabs/php_codesniffer=*"
 
-      - name: Check PHP coding standards (PSR-2)
-        run: ~/.composer/vendor/bin/phpcs --standard=PSR2 .
+      - name: Check PHP coding standards (PSR-12)
+        run: ~/.composer/vendor/bin/phpcs --standard=PSR12 .
 
