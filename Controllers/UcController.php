@@ -2,10 +2,10 @@
 
 namespace Controllers;
 
-use \Libraries\Encrypt;
-use \Models\Uc;
-use \Libraries\Response;
-use \Libraries\Request;
+use Libraries\Encrypt;
+use Models\Uc;
+use Libraries\Response;
+use Libraries\Request;
 
 class UcController
 {
@@ -38,7 +38,7 @@ class UcController
         if (empty($post['name']) || empty($post['code']) || empty($post['description'])) {
             Response::sendResponse(422, ["msg" => "Parameters not found"]);
         }
-        if($info_exist = Uc::find("*", ["code"=>$post['code']])){
+        if ($info_exist = Uc::find("*", ["code" => $post['code']])) {
             Response::sendResponse(205, ["msg" => "Uc Already Exist", "id" => $info_exist[0]->iduc]);
         }
         $response = $this->save($post);

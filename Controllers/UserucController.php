@@ -2,11 +2,11 @@
 
 namespace Controllers;
 
-use \Models\Uc;
-use \Models\User;
-use \Models\UserUc;
-use \Libraries\Response;
-use \Libraries\Request;
+use Models\Uc;
+use Models\User;
+use Models\UserUc;
+use Libraries\Response;
+use Libraries\Request;
 
 class UserucController
 {
@@ -68,7 +68,7 @@ class UserucController
         }
         $uuc_class->iduc = $uc[0]->iduc;
         $uuc_class->iduser = $user[0]->iduser;
-        if(UserUc::find("*", ["uuc.iduc"=>$uc[0]->iduc, "uuc.iduser"=>$user[0]->iduser])){
+        if (UserUc::find("*", ["uuc.iduc" => $uc[0]->iduc, "uuc.iduser" => $user[0]->iduser])) {
             Response::sendResponse(205, ["msg" => "User Already Register in Uc"]);
         }
         return $uuc_class->insert();
