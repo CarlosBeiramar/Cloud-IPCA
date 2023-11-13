@@ -9,6 +9,7 @@ use Libraries\Request;
 
 class UserController
 {
+
     /**
      * index
      *
