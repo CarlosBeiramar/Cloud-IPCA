@@ -10,7 +10,6 @@ use Libraries\Request;
 
 class UserucController
 {
-    
     /**
      * index
      *

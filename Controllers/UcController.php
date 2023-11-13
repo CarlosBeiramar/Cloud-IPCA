@@ -9,7 +9,6 @@ use Libraries\Request;
 
 class UcController
 {
-    
     /**
      * index
      *
