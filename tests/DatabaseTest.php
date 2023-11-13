@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 final class DatabaseTest extends TestCase
 {
-
     protected function setUp(): void
     {
         if (!extension_loaded('pdo')) {

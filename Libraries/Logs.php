@@ -6,7 +6,6 @@ use Models\Logs as LogsModel;
 
 class Logs
 {
-
     public static $log;
 
 
@@ -49,15 +48,20 @@ class Logs
     }
 
     /**
-     * accessIsInvalid - check if the ip has already failed 5 consecutive times and when was the last time 
-     * 
+     * accessIsInvalid - check if the ip has already failed 5 consecutive times and when was the last time
+     *
      * @param  string $resource
      * @param  string $method
      * @return int
      */
     public static function accessIsInvalid(string $resource, string $method)
     {
-        $logs = LogsModel::find("*", ["resource" => $resource, "method" => $method, "ip" => $_SERVER['REMOTE_ADDR']], "idlog DESC", 5);
+        $logs = LogsModel::find(
+            "*",
+            ["resource" => $resource, "method" => $method, "ip" => $_SERVER['REMOTE_ADDR']],
+            "idlog DESC",
+            5
+        );
         if ($logs && count($logs) == 5) {
             $count = 0;
             foreach ($logs as $key => $value) {

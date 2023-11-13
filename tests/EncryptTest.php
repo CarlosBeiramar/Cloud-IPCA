@@ -26,11 +26,11 @@ final class EncryptTest extends TestCase
     public function testDecryptJWT(): void
     {
         $encrypted = Encrypt::encryptJwt("EXAMPLE");
-        if(!isset($encrypted['token'])){
+        if( !isset($encrypted['token']) ) {
             $this->fail('This test intentionally fails in encrypted.');
         }
         $descrypted = Encrypt::decryptJwt($encrypted['token']);
-        if(!isset($descrypted['sub'])){
+        if( !isset($descrypted['sub']) ) {
             $this->fail('This test intentionally fails in decrypted.');
         }
         $this->assertEquals("EXAMPLE", $descrypted['sub']);

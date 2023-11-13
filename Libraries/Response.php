@@ -4,11 +4,10 @@ namespace Libraries;
 
 class Response
 {
-
     /**
      * sendResponse
      *
-     * @param  int $code code http 
+     * @param  int $code code http
      * @param  array $result result to send
      * @return void
      */
