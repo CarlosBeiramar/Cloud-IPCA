@@ -5,7 +5,6 @@ use \Libraries\Logs;
 
 class Start
 {
-    
     /**
      * init
      *
@@ -41,7 +40,7 @@ class Start
             Response::sendResponse(404, ["msg" => $e->getMessage()]);
         }
     }
-    
+
     /**
      * createRoute
      *

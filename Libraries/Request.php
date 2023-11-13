@@ -8,8 +8,6 @@ use \Models\User;
 
 class Request
 {
-
-
     /**
      * verifyToken
      *

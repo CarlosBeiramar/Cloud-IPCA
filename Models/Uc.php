@@ -6,7 +6,6 @@ use \Config\Database;
 
 class Uc
 {
-
     public int $iduc;
     public string $code;
     public string $name;
@@ -47,7 +46,7 @@ class Uc
     {
         $sql = " INSERT INTO `uc`
         (`iduc`, `code`, `name`, `description`)
-        VALUES 
+        VALUES
         (null,     :code,   :name,  :description)";
         $values = [
             "code" => $this->code,
@@ -64,7 +63,7 @@ class Uc
      */
     public function update()
     {
-        $sql = "UPDATE `uc` SET 
+        $sql = "UPDATE `uc` SET
         `code` = :code, `name` = :name, `description` = :description
         WHERE `iduc` = :iduc";
         $values = [

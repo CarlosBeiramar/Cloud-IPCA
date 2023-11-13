@@ -6,7 +6,6 @@ use \Config\Database;
 
 class User
 {
-
     public int $iduser;
     public string $name;
     public string $email;
@@ -51,7 +50,7 @@ class User
     {
         $sql = " INSERT INTO `user`
         (`iduser`, `name`, `email`, `password`, `apikey`, `type`)
-        VALUES 
+        VALUES
         (null,     :name,   :email,  :password,  :apikey, :type);";
         $values = [
             "name" => $this->name,
@@ -71,7 +70,7 @@ class User
      */
     public function update()
     {
-        $sql = "UPDATE `user` SET 
+        $sql = "UPDATE `user` SET
         `name` = :name, `email` = :email, `password` = :password, `type` = :type
         WHERE `iduser` = :iduser";
         $values = [

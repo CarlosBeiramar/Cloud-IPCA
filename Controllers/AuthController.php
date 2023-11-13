@@ -9,8 +9,6 @@ use \Libraries\Logs;
 
 class AuthController
 {
-
-
     /**
      * index
      *

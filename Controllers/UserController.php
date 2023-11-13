@@ -9,8 +9,6 @@ use \Libraries\Request;
 
 class UserController
 {
-
-
     /**
      * index
      *
@@ -59,7 +57,7 @@ class UserController
     {
         $user = Request::verifyToken([0, 1]);
         $us = $this->checkUser($params);
-        if ($us && ($user[0]->type == 0 || $user[0]->iduser == $us[0]->iduser)) { //only permit admin or same user 
+        if ($us && ($user[0]->type == 0 || $user[0]->iduser == $us[0]->iduser)) { //only permit admin or same user
             $post = Request::getPostParams();
             if (!empty($post['password'])) {
                 $post['password'] = Encrypt::encode($post['password']);
