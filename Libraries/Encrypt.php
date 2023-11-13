@@ -7,7 +7,6 @@ use Firebase\JWT\Key;
 
 class Encrypt
 {
-
     private static $secret_key = "aeb0423474cae7bc96d2e7faab13ad30";
     private static $secret_iv = "1af0891441629cc190fe276bc7618841";
     private static $encrypt_method = "AES-256-CBC";
@@ -32,7 +31,7 @@ class Encrypt
      * encryptJwt
      *
      * @param  string $string string to encrypt
-     * @throws \Exception 
+     * @throws \Exception
      * @return array
      */
     public static function encryptJwt($string)

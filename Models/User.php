@@ -6,7 +6,6 @@ use Config\Database;
 
 class User
 {
-
     public int $iduser;
     public string $name;
     public string $email;
@@ -15,8 +14,6 @@ class User
     public int $type;
     public string $created_at;
     public string $updated_at;
-
-
 
     /**
      * find
