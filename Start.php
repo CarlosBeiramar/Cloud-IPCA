@@ -1,7 +1,7 @@
 <?php
 
-use \Libraries\Response;
-use \Libraries\Logs;
+use Libraries\Response;
+use Libraries\Logs;
 
 class Start
 {

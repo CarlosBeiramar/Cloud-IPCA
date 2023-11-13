@@ -2,7 +2,7 @@
 
 namespace Models;
 
-use \Config\Database;
+use Config\Database;
 
 class User
 {

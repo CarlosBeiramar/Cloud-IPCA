@@ -2,10 +2,10 @@
 
 namespace Controllers;
 
-use \Libraries\Encrypt;
-use \Models\User;
-use \Libraries\Response;
-use \Libraries\Request;
+use Libraries\Encrypt;
+use Models\User;
+use Libraries\Response;
+use Libraries\Request;
 
 class UserController
 {
@@ -36,7 +36,7 @@ class UserController
         if (empty($post['name']) || empty($post['email']) || empty($post['password']) || !isset($post['type'])) {
             Response::sendResponse(422, ["msg" => "Parameters not found"]);
         }
-        if($user_exist = User::find("*", ["email"=>$post['email']])){
+        if ($user_exist = User::find("*", ["email" => $post['email']])) {
             Response::sendResponse(205, ["msg" => "User Already Exist", "id" => $user_exist[0]->iduser]);
         }
         $response = $this->save($post);

@@ -2,9 +2,9 @@
 
 namespace Libraries;
 
-use \Libraries\Encrypt;
-use \Libraries\Response;
-use \Models\User;
+use Libraries\Encrypt;
+use Libraries\Response;
+use Models\User;
 
 class Request
 {

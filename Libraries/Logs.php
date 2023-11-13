@@ -2,7 +2,7 @@
 
 namespace Libraries;
 
-use \Models\Logs as LogsModel;
+use Models\Logs as LogsModel;
 
 class Logs
 {
