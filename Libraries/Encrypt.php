@@ -41,8 +41,8 @@ class Encrypt
         $exp = $time + 600;
         $payload = [
             'sub' => $string,
-            'iss' => $_SERVER['HTTP_HOST'],
-            'aud' => $_SERVER['HTTP_USER_AGENT'],
+            'iss' => $_SERVER['HTTP_HOST'] ?? 'local',
+            'aud' => $_SERVER['HTTP_USER_AGENT'] ?? 'local',
             'iat' => $time,
             'exp' => $exp
         ];

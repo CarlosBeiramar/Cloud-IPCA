@@ -7,7 +7,7 @@ use Models\Logs as LogsModel;
 class Logs
 {
 
-    static $log;
+    public static $log;
 
 
     /**
