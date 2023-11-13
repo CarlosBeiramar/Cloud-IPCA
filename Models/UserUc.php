@@ -6,7 +6,6 @@ use Config\Database;
 
 class UserUc
 {
-
     public int $iduc;
     public int $iduser;
     public string $created_at;

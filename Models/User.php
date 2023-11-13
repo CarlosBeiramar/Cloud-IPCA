@@ -6,7 +6,6 @@ use Config\Database;
 
 class User
 {
-
     public int $iduser;
     public string $name;
     public string $email;

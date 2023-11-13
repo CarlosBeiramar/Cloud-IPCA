@@ -6,7 +6,6 @@ use Config\Database;
 
 class Logs
 {
-
     public int $idlog;
     public ?int $iduser;
     public ?string $ip;
@@ -52,8 +51,6 @@ class Logs
         }
         return Database::getResults($sql, $filters);
     }
-
-
 
     /**
      * insert

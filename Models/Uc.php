@@ -6,7 +6,6 @@ use Config\Database;
 
 class Uc
 {
-
     public int $iduc;
     public string $code;
     public string $name;
