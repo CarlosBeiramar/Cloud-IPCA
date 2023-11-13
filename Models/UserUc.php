@@ -21,7 +21,10 @@ class UserUc
     public static function find(string $columns = "*", array $filters = [])
     {
         $filters_converted = [];
-        $sql = "SELECT " . $columns . " FROM `user_uc` as uuc left join  user on user.iduser=uuc.iduser left join uc on uc.iduc=uuc.iduc  ";
+        $sql = "SELECT " . $columns . " FROM `user_uc` as uuc 
+                                        left join  user on user.iduser=uuc.iduser 
+                                        left join uc on uc.iduc=uuc.iduc  
+                                        ";
         if (!empty($filters)) {
             $sql .= " WHERE ";
             $count = 0;
