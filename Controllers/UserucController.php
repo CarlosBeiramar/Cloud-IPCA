@@ -54,7 +54,7 @@ class UserucController
      * save
      *
      * @param  array $post
-     * @return boolean|int
+     * @return boolean
      */
     private function save(array $post)
     {
@@ -77,7 +77,7 @@ class UserucController
      * checkInfo
      *
      * @param  array $params
-     * @return array
+     * @return array|boolean
      */
     private function checkInfo(array $params = [])
     {
