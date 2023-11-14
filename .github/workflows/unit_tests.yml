@@ -21,6 +21,13 @@ jobs:
     - name: Install Composer dependencies
       run: composer install
 
+    - name: Rename .env-example to .env
+      run: mv .env-example .env
+
+    - name: Import MySQL SQL Dump
+      run: |
+        sudo docker exec -i $(sudo docker-compose ps -q mysql) mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE} < sql.sql
+
     - name: Run Tests
       run: |
         vendor/phpunit/phpunit/phpunit
