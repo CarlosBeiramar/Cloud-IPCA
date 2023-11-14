@@ -24,6 +24,9 @@ jobs:
     - name: Rename .env-example to .env
       run: mv .env-example .env
 
+    - name: check docker
+      run: docker ps
+
     - name: Import MySQL SQL Dump
       env:
         MYSQL_DATABASE: cloud
