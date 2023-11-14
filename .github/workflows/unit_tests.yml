@@ -27,6 +27,9 @@ jobs:
     - name: check docker
       run: docker ps
 
+    - name: Check MySQL Container Status
+      run: docker exec cloud-ipca_mysql_1 service mysql status
+
     - name: Import MySQL SQL Dump
       env:
         MYSQL_DATABASE: cloud
