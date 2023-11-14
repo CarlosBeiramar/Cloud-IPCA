@@ -12,7 +12,7 @@ class Request
      * verifyToken
      *
      * @param  array $levels
-     * @return User
+     * @return array
      */
     public static function verifyToken(array $levels = [])
     {
