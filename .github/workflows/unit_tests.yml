@@ -25,6 +25,10 @@ jobs:
       run: mv .env-example .env
 
     - name: Import MySQL SQL Dump
+      env:
+        MYSQL_DATABASE: cloud
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
       run: |
         sudo docker exec -i $(sudo docker-compose ps -q mysql) mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE} < sql.sql
 
