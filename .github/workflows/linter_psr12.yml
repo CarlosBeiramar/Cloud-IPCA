@@ -1,4 +1,4 @@
-name: PHP Linter
+name: PHP PSR-12 Validator
 
 on:
   push:
