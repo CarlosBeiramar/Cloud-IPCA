@@ -23,7 +23,7 @@ jobs:
 
     - name: Run Tests
       run: |
-        ~/.composer/vendor/bin/phpunit/phpunit/phpunit
+        vendor/phpunit/phpunit/phpunit
 
     - name: Stop Docker Compose
       run: |
