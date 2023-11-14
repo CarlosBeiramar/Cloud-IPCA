@@ -8,5 +8,5 @@ require_once("autoload.php");
 
 
 $Start  = new Start();
-$Start->init();
+$Start->init();y
 exit();
