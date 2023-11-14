@@ -22,7 +22,7 @@ jobs:
       run: composer install
 
     - name: Install phpstan
-        run: composer global require "phpstan/phpstan=*"
+      run: composer global require "phpstan/phpstan=*"
 
     - name: Run PHPStan
       run: vendor/bin/phpstan analyze --level=8 --no-progress
