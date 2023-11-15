@@ -62,6 +62,7 @@ jobs:
         echo "ficheiro leitura"
         cat output.txt
         ls -l
+        ls -l html/
 
     - name: Wait for API server to start
       run: sleep 10
