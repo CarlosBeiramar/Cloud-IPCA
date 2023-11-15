@@ -60,7 +60,7 @@ jobs:
         CONTAINER_ID=$(docker ps --filter "name=cloud-ipca_webserver_1" --format "{{.ID}}")
         echo $CONTAINER_ID
         docker exec $CONTAINER_ID curl -X GET \
-        "http://cloud-ipca/api/auth"  
+        "http://127.0.0.1/api/auth"  
 
     - name: Wait for API server to start
       run: sleep 10

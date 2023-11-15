@@ -26,6 +26,8 @@ services:
             - './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
         ports:
             - '80:80'
+        expose:
+            - 8000
 
     php-fpm:
         build: phpdocker/php-fpm
