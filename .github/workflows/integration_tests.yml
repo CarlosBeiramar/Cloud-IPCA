@@ -58,7 +58,7 @@ jobs:
         CONTAINER_ID=$(docker ps --filter "name=cloud-ipca_webserver_1" --format "{{.ID}}")
         echo $CONTAINER_ID
         curl -X GET \
-        "http://127.0.0.1:80/api/auth"  -o output.txt
+        "http://127.0.0.1:80/index.php?param=api/auth"  -o output.txt
         echo "ficheiro leitura"
         cat output.txt
 
