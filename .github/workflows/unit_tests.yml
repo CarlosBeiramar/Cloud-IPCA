@@ -29,7 +29,7 @@ jobs:
       run: docker ps
 
     - name: Check MySQL Container Logs
-      run: mysql -h 127.0.0.1 -P 3306 -u root -proot -e "SHOW DATABASES;"
+      run: mysql -h 127.0.0.1 -P 3306 -u root -proot cloud < sql.sql
 
 
     - name: Run Tests
