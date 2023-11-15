@@ -27,14 +27,11 @@ jobs:
         echo "DB_HOST=127.0.0.1" > .env
         echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
-        echo "DB_NAME=cloud" >> .env
+        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
         cat .env
 
-    - name: check docker
-      run: docker ps
-
     - name: Check MySQL Container Logs
-      run: mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} cloud < sql.sql
+      run: mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
 
 
     - name: Run Tests
