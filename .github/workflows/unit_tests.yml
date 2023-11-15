@@ -28,7 +28,9 @@ jobs:
       run: docker ps
 
     - name: Check MySQL Container Logs
-      run: docker logs cloud-ipca_mysql_1
+      run: |
+        docker logs cloud-ipca_mysql_1
+        mysql -h cloud-ipca_mysql_1 -u root -proot -e "CREATE DATABASE IF NOT EXISTS cloud;"
 
 
     - name: Run Tests
