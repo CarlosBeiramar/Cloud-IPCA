@@ -37,8 +37,8 @@ jobs:
 
     - name: Copy files to HTML folder 
       run: |
-        mkdir html/public
-        cp -r * html/public
+        sudo mkdir html/public
+        sudo cp -r * html/public
 
     - name: Download Collection From Postman
       run: |
