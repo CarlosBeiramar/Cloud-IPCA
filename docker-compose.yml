@@ -13,7 +13,7 @@ services:
             - './html:/var/www/html'
         environment:
             - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_DATABASE=test
+            - MYSQL_DATABASE=cloud
         ports:
             - '3306:3306'
 

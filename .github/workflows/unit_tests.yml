@@ -28,13 +28,12 @@ jobs:
       run: docker ps
 
     - name: Wait for MySQL to Initialize
-      run: sleep 20
+      run: sleep 4
 
     - name: Check MySQL Container Logs
       run: docker logs cloud-ipca_mysql_1
 
-    - name: uuuuu
-      run: sudo docker exec -it cloud-ipca_mysql_1 mysql -u root
+
 
     - name: Import MySQL SQL Dump
       env:
