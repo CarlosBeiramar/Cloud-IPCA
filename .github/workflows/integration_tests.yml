@@ -61,6 +61,7 @@ jobs:
         "http://127.0.0.1:80/index.php?param=api/auth"  -o output.txt
         echo "ficheiro leitura"
         cat output.txt
+        ls -l
 
     - name: Wait for API server to start
       run: sleep 10
