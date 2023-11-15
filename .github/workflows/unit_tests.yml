@@ -15,8 +15,8 @@ jobs:
 
     - name: Set up Docker Compose
       run: |
-        sudo docker-compose --version
-        sudo docker-compose up -d
+        docker-compose --version
+        docker-compose up -d
 
     - name: Install Composer dependencies
       run: composer install
@@ -39,7 +39,7 @@ jobs:
       env:
         MYSQL_DATABASE: cloud
       run: |
-        sudo docker exec -i cloud-ipca_mysql_1 mysql  -u root -proot  < sql.sql
+        docker exec -i cloud-ipca_mysql_1 mysql  -u root -proot  < sql.sql
 
     - name: Run Tests
       run: |
