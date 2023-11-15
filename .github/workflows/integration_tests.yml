@@ -58,14 +58,13 @@ jobs:
     - name: Install dependencies
       run: npm install -g newman
 
-    - name: Start API server
-      run: |
-        # Start your API server here
-        npm install # Assuming this is how you start your server
-        npm start &
+    
 
     - name: Wait for API server to start
-      run: sleep 10 # Adjust the sleep time as needed
+      run: sleep 10
+
+    - name: Verify Newman installation
+      run: newman --version
 
     - name: Run Postman Collection
       run: |
