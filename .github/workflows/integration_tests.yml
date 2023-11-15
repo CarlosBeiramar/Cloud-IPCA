@@ -50,17 +50,27 @@ jobs:
     - name: Display Collection
       run: cat collection.json
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
 
+    - name: Install dependencies
+      run: npm install -g newman
 
+    
+
+    - name: Wait for API server to start
+      run: sleep 10
+
+    - name: Verify Newman installation
+      run: newman --version
 
     - name: Run Postman Collection
       run: |
-
-        CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cloud-ipca_mysql_1)
-
-        docker run -v $(pwd):/etc/newman -t postman/newman:alpine run collection.json \
+        newman run collection.json \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
-          --env-var "API_BASE_URL=$CONTAINER_IP"
+          --env-var "API_BASE_URL=http://localhost"
 
     - name: Stop Docker Compose
       run: |
