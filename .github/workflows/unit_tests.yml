@@ -17,19 +17,24 @@ jobs:
       run: docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
-      run: sleep 15
+      run: sleep 4
 
     - name: Install Composer dependencies
       run: composer install
 
-    - name: Rename .env-example to .env
-      run: mv .env-example .env
+    - name: Create and Add Information to File
+      run: |
+        echo "DB_HOST=127.0.0.1" > .env
+        echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
+        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
+        echo "DB_NAME=cloud" >> .env
+        cat .env
 
     - name: check docker
       run: docker ps
 
     - name: Check MySQL Container Logs
-      run: mysql -h 127.0.0.1 -P 3306 -u root -proot cloud < sql.sql
+      run: mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} cloud < sql.sql
 
 
     - name: Run Tests
