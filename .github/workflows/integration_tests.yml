@@ -55,9 +55,12 @@ jobs:
 
     - name: Run Postman Collection
       run: |
+
+        CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cloud-ipca_mysql_1)
+
         docker run -v $(pwd):/etc/newman -t postman/newman:alpine run collection.json \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
-          --env-var "API_BASE_URL=http://localhost"
+          --env-var "API_BASE_URL=$CONTAINER_IP"
 
     - name: Stop Docker Compose
       run: |
