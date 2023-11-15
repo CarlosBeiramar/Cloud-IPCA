@@ -20,7 +20,7 @@ jobs:
       run: docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
-      run: sleep 4
+      run: sleep 10
 
     - name: Install Composer dependencies
       run: composer install
