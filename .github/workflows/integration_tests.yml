@@ -58,7 +58,7 @@ jobs:
         CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cloud-ipca_webserver_1)
         echo $CONTAINER_IP
         curl -X GET \
-        "http://host.docker.internal/api/auth"  
+        "http://172.18.0.4/api/auth"  
 
     - name: Wait for API server to start
       run: sleep 10
