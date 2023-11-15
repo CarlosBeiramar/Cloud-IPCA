@@ -33,11 +33,14 @@ jobs:
     - name: Check MySQL Container Logs
       run: docker logs cloud-ipca_mysql_1
 
+    - name: uuuuu
+      run: sudo docker exec -it cloud-ipca_mysql_1 mysql -u root
+
     - name: Import MySQL SQL Dump
       env:
         MYSQL_DATABASE: cloud
       run: |
-        sudo docker exec -i cloud-ipca_mysql_1 mysql -h 127.0.0.1 -u root < sql.sql
+        sudo docker exec -i cloud-ipca_mysql_1 mysql -h 127.0.0.1 -u root --password= < sql.sql
 
     - name: Run Tests
       run: |
