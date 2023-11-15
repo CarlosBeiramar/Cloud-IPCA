@@ -36,10 +36,8 @@ jobs:
     - name: Import MySQL SQL Dump
       env:
         MYSQL_DATABASE: cloud
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
       run: |
-        sudo docker exec -i  cloud-ipca_mysql_1 mysql -u root -proot test < sql.sql
+        sudo docker exec -i cloud-ipca_mysql_1 mysql -h 127.0.0.1 -u root < sql.sql
 
     - name: Run Tests
       run: |
