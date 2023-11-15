@@ -27,6 +27,9 @@ jobs:
     - name: check docker
       run: docker ps
 
+    - name: Wait for MySQL to Initialize
+      run: sleep 20
+
     - name: Check MySQL Container Logs
       run: docker logs cloud-ipca_mysql_1
 
