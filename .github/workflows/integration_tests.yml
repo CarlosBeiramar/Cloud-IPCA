@@ -50,15 +50,11 @@ jobs:
     - name: Display Collection
       run: cat collection.json
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
 
-    - name: Install dependencies
-      run: npm install -g newman
-
-    
+    - name: Download Collection From Postman
+      run: |
+        curl -X GET \
+        "http://localhost/api/auth"  
 
     - name: Wait for API server to start
       run: sleep 10
