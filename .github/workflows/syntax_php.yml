@@ -1,9 +1,6 @@
 name: PHP Syntax Check
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
