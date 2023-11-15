@@ -37,8 +37,9 @@ jobs:
 
     - name: Copy files to HTML folder 
       run: |
+        shopt -s extglob
         sudo mkdir html/public
-        sudo cp -r * html/public
+        sudo cp -r !(html) html/public
 
     - name: Download Collection From Postman
       run: |
