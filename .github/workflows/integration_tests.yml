@@ -39,7 +39,7 @@ jobs:
     - name: Download Collection From Postman
       run: |
         COLLECTION_UID=30816775-1a3bc6d6-7921-4a45-abd6-31f07e52d0da
-        API_KEY=$POSTMAN_API_KEY
+        API_KEY=${{ secrets.POSTMAN_API_KEY }}
 
         curl -X GET \
         "https://api.postman.com/collections/$COLLECTION_UID" \
@@ -49,6 +49,29 @@ jobs:
 
     - name: Display Collection
       run: cat collection.json
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install -g newman
+
+    - name: Start API server
+      run: |
+        # Start your API server here
+        npm install # Assuming this is how you start your server
+        npm start &
+
+    - name: Wait for API server to start
+      run: sleep 10 # Adjust the sleep time as needed
+
+    - name: Run Postman Collection
+      run: |
+        newman run collection.json \
+          --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
+          --env-var "API_BASE_URL=http://localhost:3000"
 
     - name: Stop Docker Compose
       run: |
