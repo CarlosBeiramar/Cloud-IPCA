@@ -39,7 +39,7 @@ jobs:
       env:
         MYSQL_DATABASE: cloud
       run: |
-        sudo docker exec -i cloud-ipca_mysql_1 mysql -h 127.0.0.1 -u root --password= < sql.sql
+        sudo docker exec -i cloud-ipca_mysql_1 mysql  -u root  < sql.sql
 
     - name: Run Tests
       run: |
