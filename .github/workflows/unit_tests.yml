@@ -38,7 +38,7 @@ jobs:
     - name: Import MySQL SQL Dump
       env:
         MYSQL_DATABASE: cloud
-      run: docker exec -i cloud-ipca_mysql_1 mysql -h 127.0.0.1 -P 3306 -u root -proot < sql.sql
+      run: docker exec -i cloud-ipca_mysql_1 mysql -h cloud-ipca_mysql_1 -P 3306 -u root -proot < sql.sql
 
     - name: Run Tests
       run: |
