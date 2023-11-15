@@ -30,7 +30,8 @@ jobs:
     - name: Check MySQL Container Logs
       run: |
         docker logs cloud-ipca_mysql_1
-        mysql -h cloud-ipca_mysql_1 -u root -proot -e "CREATE DATABASE IF NOT EXISTS cloud;"
+        MYSQL_HOST=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cloud-ipca_mysql_1)
+        mysql -h $MYSQL_HOST -u root -proot -e "CREATE DATABASE IF NOT EXISTS cloud;"
 
 
     - name: Run Tests
