@@ -15,10 +15,7 @@ jobs:
 
 
     - name: Set up Docker Compose
-      run: |
-        ls -l
-        pwd
-        docker-compose -f docker-compose.yml up -d
+      run:  docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
       run: sleep 10
@@ -42,6 +39,8 @@ jobs:
 
     - name: Download Collection From Postman
       run: |
+        ls -l
+        pwd
         COLLECTION_UID=30816775-1a3bc6d6-7921-4a45-abd6-31f07e52d0da
         API_KEY=${{ secrets.POSTMAN_API_KEY }}
 
