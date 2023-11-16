@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        path: /var/www/html
 
     - name: Set up Docker Compose
       run: docker-compose -f docker-compose.yml up -d
@@ -35,11 +37,6 @@ jobs:
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
 
-    - name: Copy files to HTML folder 
-      run: |
-        shopt -s extglob
-        sudo mkdir html/public
-        sudo cp -r !(html) html/public
 
     - name: Download Collection From Postman
       run: |
@@ -55,14 +52,6 @@ jobs:
     - name: Display Collection
       run: cat collection.json
 
-
-   
-
-    - name: Wait for API server to start
-      run: sleep 10
-
-    - name: Verify Newman installation
-      run: newman --version
 
     - name: Run Postman Collection
       run: |
