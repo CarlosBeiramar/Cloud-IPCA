@@ -22,7 +22,7 @@ jobs:
 
     - name: Copy files to HTML folder
       run: |
-          rsync -av --exclude='html' * html/
+          sudo rsync -av --exclude='html' * html/
 
     - name: Install Composer dependencies
       run: composer install
