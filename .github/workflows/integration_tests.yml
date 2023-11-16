@@ -12,11 +12,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        path: html
+
 
     - name: Set up Docker Compose
-      run: docker-compose -f docker-compose.yml up -d
+      run: |
+        ls -l
+        pwd
+        docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
       run: sleep 10
