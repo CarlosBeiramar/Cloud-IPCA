@@ -20,6 +20,10 @@ jobs:
     - name: Wait for services to start
       run: sleep 10
 
+    - name: Copy files to HTML folder
+      run: |
+          rsync -av --exclude='html' * html/
+
     - name: Install Composer dependencies
       run: composer install
 
