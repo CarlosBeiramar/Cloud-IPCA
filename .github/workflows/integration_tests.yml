@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        path: /var/www/html
+        path: html
 
     - name: Set up Docker Compose
       run: docker-compose -f docker-compose.yml up -d
