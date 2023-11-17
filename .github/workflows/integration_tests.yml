@@ -54,6 +54,9 @@ jobs:
         -H "X-Api-Key: $API_KEY" \
         -o collection.json
 
+    - name: Run Tests
+      run: |
+          vendor/phpunit/phpunit/phpunit
 
     - name: Run Postman Collection
       run: |
