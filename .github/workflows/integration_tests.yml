@@ -23,13 +23,17 @@ jobs:
     - name: Install Composer dependencies
       run: composer install
 
+    - name: Copy files to HTML folder
+      run: |
+        sudo rsync -av --exclude='html' * html/
+
     - name: Create and Add Information to File
       run: |
-        echo "DB_HOST=127.0.0.1" > .env
-        echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
-        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
-        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
-        cat .env
+        echo "DB_HOST=127.0.0.1" > html/.env
+        echo "DB_USER=${{ secrets.MYSQL_USER }}" >> html/.env
+        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> html/.env
+        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> html/.env
+        cat html/.env
 
     - name: Import Database
       run: |
@@ -38,9 +42,7 @@ jobs:
         sudo rsync -av --exclude='html' * html/
         curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
 
-    - name: Copy files to HTML folder
-      run: |
-        sudo rsync -av --exclude='html' * html/
+
 
     - name: Download Collection From Postman
       run: |
