@@ -20,10 +20,8 @@ jobs:
     - name: Wait for services to start
       run: sleep 10
 
-    - name: Copy files to HTML folder
-      run: |
-          sudo rsync -av --exclude='html' * html/
-          cd html
+
+
 
     - name: Install Composer dependencies
       run: composer install
@@ -41,6 +39,9 @@ jobs:
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
 
+    - name: Copy files to HTML folder
+      run: |
+          sudo rsync -av --exclude='html' * html/
 
     - name: Download Collection From Postman
       run: |
