@@ -46,7 +46,7 @@ class Database
             }
             return null;
         } catch (\Exception $e) {
-            return $e->getMessage();
+            var_dump( $e->getMessage());die();
         }
     }
 
@@ -74,7 +74,7 @@ class Database
             }
             return false;
         } catch (\Exception $e) {
-            return $e->getMessage();
+            var_dump( $e->getMessage());die();
         }
     }
 }
