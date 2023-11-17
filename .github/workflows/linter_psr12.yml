@@ -1,9 +1,6 @@
 name: PHP PSR-12 Validator
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
