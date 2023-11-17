@@ -25,7 +25,7 @@ final class UserTest extends TestCase
         $user_class->email = "testunit@example.pt";
         $user_class->type = 1;
         $user_class->apikey = md5(openssl_random_pseudo_bytes(17) . date('Y-m-d H:i:s'));
-        $user_class->password = "UFdOV29TZWtLdFdvMlZXd3p2WFRFQT09";
+        $user_class->password = "SlZ1QXBYZEcrY0FGY21mWDNUT2pQdz09";
         $res = $user_class->insert();
         $this->assertNotFalse($res, 'The id should not be false.');
     }

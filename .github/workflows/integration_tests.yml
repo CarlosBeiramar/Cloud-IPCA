@@ -63,9 +63,8 @@ jobs:
         curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
         newman run collection.json \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
-          --env-var "API_BASE_URL=http://127.0.0.1:80" \
-          --reporters cli,json --reporter-json-export output.json
-        cat output.json
+          --env-var "API_BASE_URL=http://127.0.0.1:80" 
+          
 
 
     - name: Stop Docker Compose
