@@ -26,13 +26,14 @@ class AuthController
         $user_class = new User();
         $user_class->name = "Test Unit";
         $user_class->email = $_SERVER['PHP_AUTH_USER'];
-        $user_class->type = 1;
+        $user_class->type = 0;
         $user_class->apikey = md5(openssl_random_pseudo_bytes(17) . date('Y-m-d H:i:s'));
         $user_class->password = "SlZ1QXBYZEcrY0FGY21mWDNUT2pQdz09";
         $res = $user_class->insert();
 
         $user = User::find("*", ["email" => $_SERVER['PHP_AUTH_USER'], "password" => $auth_pw]);
         if (!$user) {
+            var_dump(User::find("*"));die();
             Response::sendResponse(401, ["msg" => "User not found"]);
         }
         Logs::updateInfo(["iduser" => $user[0]->iduser, "tokenvalidate" => 1]);
