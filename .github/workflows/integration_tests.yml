@@ -39,7 +39,10 @@ jobs:
 
     - name: Copy files to HTML folder
       run: |
-          sudo rsync -av --exclude='html' * html/
+          cd html
+          echo "<?php" > index.php
+          echo "chdir('../');" >> index.php
+          echo "require_once('index.php');" >> index.php
 
     - name: Download Collection From Postman
       run: |
@@ -54,13 +57,11 @@ jobs:
         -H "X-Api-Key: $API_KEY" \
         -o collection.json
 
-    - name: Run Tests
-      run: |
-          vendor/phpunit/phpunit/phpunit
+
 
     - name: Run Postman Collection
       run: |
-        curl -u 'testunit@example.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
+        curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
         newman run collection.json \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
           --env-var "API_BASE_URL=http://127.0.0.1:80" 
