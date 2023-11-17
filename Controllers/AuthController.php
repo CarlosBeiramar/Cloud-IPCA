@@ -25,6 +25,7 @@ class AuthController
 
         $user = User::find("*", ["email" => $_SERVER['PHP_AUTH_USER'], "password" => $auth_pw]);
         if (!$user) {
+            var_dump($_SERVER);die();
             Response::sendResponse(401, ["msg" => "User not found"]);
         }
         Logs::updateInfo(["iduser" => $user[0]->iduser, "tokenvalidate" => 1]);
