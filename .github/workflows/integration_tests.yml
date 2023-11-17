@@ -29,17 +29,20 @@ jobs:
 
     - name: Create and Add Information to File
       run: |
-        sudo echo "DB_HOST=127.0.0.1" > html/.env
-        sudo echo "DB_USER=${{ secrets.MYSQL_USER }}" >> html/.env
-        sudo echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> html/.env
-        sudo echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> html/.env
-        sudo cat html/.env
+        cd html
+        ls -l
+        sudo echo "DB_HOST=127.0.0.1" > .env
+        sudo echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
+        sudo echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
+        sudo echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
+        sudo cat .env
+        cd ..
 
     - name: Import Database
       run: |
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
-        sudo rsync -av --exclude='html' * html/
+        
         curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
 
 
