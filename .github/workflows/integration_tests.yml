@@ -8,7 +8,11 @@ on:
 jobs:
   build-and-run:
     runs-on: ubuntu-22.04
-
+    env:
+      DB_HOST: 127.0.0.1
+      DB_USER: ${{ secrets.MYSQL_USER }}
+      DB_PASS: ${{ secrets.MYSQL_PASSWORD }}
+      DB_NAME: ${{ secrets.MYSQL_DATABASE }}
 
     steps:
 
@@ -25,16 +29,7 @@ jobs:
 
 
 
-    - name: Create and Add Information to File
-      run: |
-        ls -la html
-        sudo mkdir -p html
-        echo "DB_HOST=127.0.0.1" | sudo tee .env
-        echo "DB_USER=${{ secrets.MYSQL_USER }}" | sudo tee -a .env
-        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" | sudo tee -a .env
-        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" | sudo tee -a .env
-        cat .env
-        sudo chmod 644 .env
+
         
 
 
