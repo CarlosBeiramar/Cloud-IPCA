@@ -73,7 +73,7 @@ jobs:
 
     - name: Run Postman Collection
       run: |
-        newman run collection.json \
+        newman run collection.json \ 
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
           --env-var "API_BASE_URL=http://127.0.0.1:80" 
           
