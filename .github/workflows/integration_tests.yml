@@ -20,7 +20,12 @@ jobs:
 
 
     - name: Set up Docker Compose
-      run:  docker-compose -f docker-compose.yml up -d
+      run:  |
+        export DB_HOST=${DB_HOST}
+        export DB_USER=${DB_USER}
+        export DB_PASS=${DB_PASS}
+        export DB_NAME=${DB_NAME}
+        docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
       run: sleep 10
@@ -40,7 +45,6 @@ jobs:
       run: |
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
-        sudo rsync -av --exclude='html' * html/
         curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
 
     - name: Copy files to HTML folder
@@ -62,10 +66,12 @@ jobs:
         -o collection.json
 
 
+    - name: Run Postman Collection test
+      run: |
+          curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
 
     - name: Run Postman Collection
       run: |
-        curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
         newman run collection.json \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
           --env-var "API_BASE_URL=http://127.0.0.1:80" 
