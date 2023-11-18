@@ -37,6 +37,10 @@ jobs:
         sudo chmod 755 html/.env
         ls -la html
 
+
+    - name: Install Composer dependencies
+      run: composer install
+
     - name: Import Database
       run: |
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
