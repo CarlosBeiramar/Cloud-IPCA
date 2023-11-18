@@ -28,13 +28,14 @@ jobs:
     - name: Create and Add Information to File
       run: |
         ls -la html
-        echo "DB_HOST=127.0.0.1" > .env
-        echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
-        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
-        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
-        cat html/.env
-        sudo chmod 755 html/.env
-        ls -la html
+        sudo mkdir -p html
+        echo "DB_HOST=127.0.0.1" | sudo tee .env
+        echo "DB_USER=${{ secrets.MYSQL_USER }}" | sudo tee -a .env
+        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" | sudo tee -a .env
+        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" | sudo tee -a .env
+        cat .env
+        sudo chmod 644 html/.env
+        
 
 
     - name: Install Composer dependencies
@@ -50,6 +51,7 @@ jobs:
     - name: Copy files to HTML folder
       run: |
         sudo rsync -av --exclude='html' * html/
+        ls -la html
 
     - name: Download Collection From Postman
       run: |
