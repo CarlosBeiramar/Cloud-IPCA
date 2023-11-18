@@ -16,20 +16,8 @@ jobs:
 
     steps:
 
-    - name: create dir
-      run: |
-       sudo mkdir html
-       cd html
-
     - name: Checkout code
       uses: actions/checkout@v2
-
-
-    - name: create dir
-      run: | 
-       cd ..
-       ls -l
-       ls -l html
 
 
     - name: Set up Docker Compose

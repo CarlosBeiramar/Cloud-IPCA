@@ -31,7 +31,7 @@ services:
             - './html:/var/www/html'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
         environment:
-            DB_HOST: ${DB_HOST}
-            DB_USER: ${DB_USER}
+            DB_HOST: 127.0.0.1
+            DB_USER: root
             DB_PASS: ${DB_PASS}
             DB_NAME: ${DB_NAME}
