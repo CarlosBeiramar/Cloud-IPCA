@@ -46,7 +46,7 @@ jobs:
 
     - name: Download Collection From Postman
       run: |
-        ls -l
+        ls -la
         ls -l html
         pwd
         COLLECTION_UID=30816775-1a3bc6d6-7921-4a45-abd6-31f07e52d0da
