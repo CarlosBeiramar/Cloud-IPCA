@@ -28,9 +28,8 @@ jobs:
     - name: Create and Add Information to File
       run: |
         ls -la html
-        cat html/.env
         sudo mkdir -p html
-        echo "DB_HOST=127.0.0.1" | sudo tee -a html/.env
+        echo "DB_HOST=127.0.0.1" | sudo tee html/.env
         echo "DB_USER=${{ secrets.MYSQL_USER }}" | sudo tee -a html/.env
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" | sudo tee -a html/.env
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" | sudo tee -a html/.env
