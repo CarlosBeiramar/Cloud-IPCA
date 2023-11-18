@@ -15,6 +15,12 @@ jobs:
       DB_NAME: ${{ secrets.MYSQL_DATABASE }}
 
     steps:
+
+    - name: create dir
+      run: |
+       sudo mkdir html
+       cd html
+
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -36,8 +42,6 @@ jobs:
 
     - name: Create and Add Information to File
       run: |
-        cd html
-        uses: actions/checkout@v2
         echo "DB_HOST=127.0.0.1" > .env
         echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
