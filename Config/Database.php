@@ -15,7 +15,7 @@ class Database
      */
     public static function getConnection()
     {
-        if (self::$connection == null) {
+        if (self::$connection == null) {var_dump($_ENV);
             if(!isset($_ENV['DB_HOST'])){
                 
                 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
