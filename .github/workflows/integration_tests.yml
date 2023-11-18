@@ -8,6 +8,11 @@ on:
 jobs:
   build-and-run:
     runs-on: ubuntu-22.04
+    env:
+      DB_HOST: 127.0.0.1
+      DB_USER: ${{ secrets.MYSQL_USER }}
+      DB_PASS: ${{ secrets.MYSQL_PASSWORD }}
+      DB_NAME: ${{ secrets.MYSQL_DATABASE }}
 
     steps:
     - name: Checkout code
@@ -23,29 +28,24 @@ jobs:
     - name: Install Composer dependencies
       run: composer install
 
-    - name: Copy files to HTML folder
-      run: |
-        sudo rsync -av --exclude='html' * html/
-
     - name: Create and Add Information to File
       run: |
-        cd html
-        ls -l
-        sudo echo "DB_HOST=127.0.0.1" > .env
-        sudo echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
-        sudo echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
-        sudo echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
-        sudo cat .env
-        cd ..
+        echo "DB_HOST=127.0.0.1" > .env
+        echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
+        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
+        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
+        cat .env
 
     - name: Import Database
       run: |
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
-        
+        sudo rsync -av --exclude='html' * html/
         curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
 
-
+    - name: Copy files to HTML folder
+      run: |
+        sudo rsync -av --exclude='html' * html/
 
     - name: Download Collection From Postman
       run: |
