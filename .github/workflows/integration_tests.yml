@@ -8,11 +8,7 @@ on:
 jobs:
   build-and-run:
     runs-on: ubuntu-22.04
-    env:
-      DB_HOST: 127.0.0.1
-      DB_USER: ${{ secrets.MYSQL_USER }}
-      DB_PASS: ${{ secrets.MYSQL_PASSWORD }}
-      DB_NAME: ${{ secrets.MYSQL_DATABASE }}
+
 
     steps:
 
@@ -22,11 +18,6 @@ jobs:
 
     - name: Set up Docker Compose
       run:  |
-        export DB_HOST=${DB_HOST}
-        export DB_USER=${{ secrets.MYSQL_USER }}
-        export DB_PASS=${DB_PASS}
-        export DB_NAME=${{ secrets.MYSQL_DATABASE }}
-        echo ${DB_HOST}
         docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
@@ -43,6 +34,7 @@ jobs:
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" | sudo tee -a html/.env
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" | sudo tee -a html/.env
         cat html/.env
+        sudo chmod 755 html/.env
         ls -la html
 
     - name: Import Database
