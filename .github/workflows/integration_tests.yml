@@ -8,11 +8,7 @@ on:
 jobs:
   build-and-run:
     runs-on: ubuntu-22.04
-    env:
-      DB_HOST: 127.0.0.1
-      DB_USER: ${{ secrets.MYSQL_USER }}
-      DB_PASS: ${{ secrets.MYSQL_PASSWORD }}
-      DB_NAME: ${{ secrets.MYSQL_DATABASE }}
+
 
     steps:
 
@@ -46,10 +42,7 @@ jobs:
         curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
 
 
-    - name: Copy files to HTML folder
-      run: |
-        sudo rsync -av --exclude='/html' * html/
-        ls -la html
+
 
     - name: Download Collection From Postman
       run: |
