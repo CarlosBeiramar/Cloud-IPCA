@@ -40,7 +40,10 @@ jobs:
         ls -l
         sudo mkdir -p $GITHUB_WORKSPACE/html
         echo "DB_HOST=127.0.0.1" | sudo tee -a $GITHUB_WORKSPACE/html/.env
-        
+        echo "DB_USER=${{ secrets.MYSQL_USER }}" | sudo tee -a $GITHUB_WORKSPACE/html/.env
+        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" | sudo tee -a $GITHUB_WORKSPACE/html/.env
+        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" | sudo tee -a $GITHUB_WORKSPACE/html/.env
+        cat $GITHUB_WORKSPACE/html/.env
 
     - name: Import Database
       run: |
