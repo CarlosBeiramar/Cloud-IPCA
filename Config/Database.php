@@ -16,6 +16,7 @@ class Database
     public static function getConnection()
     {
         if (self::$connection == null) { 
+            var_dump($_ENV);
             if(!isset($_ENV['DB_HOST'])){
                 var_dump(__DIR__);
                 var_dump(scandir(__DIR__));
