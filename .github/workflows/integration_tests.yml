@@ -15,15 +15,22 @@ jobs:
       DB_NAME: ${{ secrets.MYSQL_DATABASE }}
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+
 
 
     - name: Set up Docker Compose
       run:  docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
-      run: sleep 10
+      run: | 
+        sleep 10
+        sudo cd html
+        ls -l
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+
 
     - name: Install Composer dependencies
       run: composer install
