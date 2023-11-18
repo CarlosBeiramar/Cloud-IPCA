@@ -25,6 +25,7 @@ jobs:
         export DB_USER=${{ secrets.MYSQL_USER }}
         export DB_PASS=${DB_PASS}
         export DB_NAME=${{ secrets.MYSQL_DATABASE }}
+        echo ${DB_HOST}
         docker-compose -f docker-compose.yml up -d
 
     - name: Wait for services to start
