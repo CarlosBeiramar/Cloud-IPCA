@@ -19,8 +19,8 @@ class Database
             var_dump($_ENV);
             if(!isset($_ENV['DB_HOST'])){
                 var_dump(__DIR__);
-                var_dump(scandir(__DIR__));
-                $dotenv = Dotenv::createImmutable( '../');
+                var_dump(scandir(__DIR__. "/../"));
+                $dotenv = Dotenv::createImmutable(__DIR__. "/../");
                 $dotenv->load();var_dump([$_ENV]); 
             }
             self::$connection = new \PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';charset=utf8', $_ENV['DB_USER'], $_ENV['DB_PASS']);
