@@ -42,6 +42,7 @@ jobs:
 
     - name: Create and Add Information to File
       run: |
+        ls -l
         echo "DB_HOST=127.0.0.1" > .env
         echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
@@ -54,9 +55,7 @@ jobs:
         mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
         curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1:80/api/auth
 
-    - name: Copy files to HTML folder
-      run: |
-        sudo rsync -av --exclude='html' * html/
+
 
     - name: Download Collection From Postman
       run: |
