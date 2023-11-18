@@ -50,7 +50,7 @@ jobs:
 
     - name: Copy files to HTML folder
       run: |
-        sudo rsync -av --exclude='html' * html/
+        sudo rsync -av --exclude='/html' * html/
         ls -la html
 
     - name: Download Collection From Postman
