@@ -32,8 +32,7 @@ jobs:
     - name: Wait for services to start
       run: sleep 10
 
-    - name: Install Composer dependencies
-      run: composer install
+
 
     - name: Create and Add Information to File
       run: |
