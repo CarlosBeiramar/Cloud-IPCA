@@ -34,7 +34,7 @@ jobs:
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" | sudo tee -a .env
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" | sudo tee -a .env
         cat .env
-        sudo chmod 644 html/.env
+        sudo chmod 644 .env
         
 
 
