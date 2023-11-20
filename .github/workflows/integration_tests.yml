@@ -35,8 +35,9 @@ jobs:
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
         cat .env
         ls -la
-        sudo cp -r * /var/www/html/
+        sudo rsync -av --exclude='html' * /var/www/html/
         sudo rm /var/www/html/index.html
+        ls -la html
         
     - name: Import Database
       run: |
@@ -49,8 +50,7 @@ jobs:
 
     - name: Download Collection From Postman
       run: |
-        ls -la
-        ls -l html
+        ls -la html
         pwd
         COLLECTION_UID=30816775-1a3bc6d6-7921-4a45-abd6-31f07e52d0da
         API_KEY=${{ secrets.POSTMAN_API_KEY }}
