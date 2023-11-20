@@ -22,20 +22,20 @@ jobs:
       - name: Build and Push Memcached image
         run: |
           ls -la
-          docker-compose -f docker-compose.yml build memcached
-        working-directory: docker-compose.yml
+          docker-compose -f ./docker-compose.yml build memcached
+        working-directory: ./
   
       - name: Push Memcached image to Docker Hub
-        run: docker-compose -f docker-compose.yml push memcached
-        working-directory: ./docker-compose.yml
+        run: docker-compose -f ./docker-compose.yml push memcached
+        working-directory: ./
   
       - name: Build and Push MySQL image
-        run: docker-compose -f docker-compose.yml build mysql
-        working-directory: ./docker-compose.yml
+        run: docker-compose -f ./docker-compose.yml build mysql
+        working-directory: ./
   
       - name: Push MySQL image to Docker Hub
-        run: docker-compose -f docker-compose.yml push mysql
-        working-directory: ./docker-compose.yml
+        run: docker-compose -f ./docker-compose.yml push mysql
+        working-directory: ./
 
       - name: Build and Push Webserver image
         run: docker-compose -f docker-compose.yml build webserver
