@@ -35,6 +35,7 @@ jobs:
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
         cat .env
         ls -la
+        cp index.php html/index.php
         
     - name: Import Database
       run: |
