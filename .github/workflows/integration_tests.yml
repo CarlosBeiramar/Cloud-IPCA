@@ -36,7 +36,8 @@ jobs:
         cat .env
         ls -la
         sudo cp index.php html/index.php
-        chown cloud:cloud html/index.php
+        sudo chown -R www-data:www-data html/index.php
+        sudo chmod -R 755 html/index.php
         
     - name: Import Database
       run: |
