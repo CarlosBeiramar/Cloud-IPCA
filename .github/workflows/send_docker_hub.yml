@@ -1,11 +1,11 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Images
 
 on:
-    push:
-      branches:
-          - main
-      tags:
-        - 'v*'
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
 
 jobs:
   build-and-push:
@@ -21,40 +21,24 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-            images: a6573/tp-scc
-
-      - name: Build and Push Memcached image
-        run: docker-compose -f ./docker-compose.yml build memcached
-        working-directory: ./
-  
-      - name: Push Memcached image to Docker Hub
-        run: docker-compose -f ./docker-compose.yml push memcached
-        working-directory: ./
-  
-      - name: Build and Push MySQL image
-        run: docker-compose -f ./docker-compose.yml build mysql
-        working-directory: ./
-  
-      - name: Push MySQL image to Docker Hub
-        run: docker-compose -f ./docker-compose.yml push mysql
+      - name: Build Docker images
+        run: docker-compose -f ./docker-compose.yml build
         working-directory: ./
 
-      - name: Build and Push Webserver image
-        run: docker-compose -f ./docker-compose.yml build webserver
+      - name: Tag and Push Memcached image
+        run: |
+          docker tag memcached:alpine a6573/tp-scc:memcached
+          docker push a6573/tp-scc:memcached
         working-directory: ./
 
-      - name: Push Webserver image to Docker Hub
-        run: docker-compose -f ./docker-compose.yml push webserver
+      - name: Tag and Push Nginx image
+        run: |
+          docker tag nginx:alpine a6573/tp-scc:nginx
+          docker push a6573/tp-scc:nginx
         working-directory: ./
 
-      - name: Build and Push PHP-FPM image
-        run: docker-compose -f ./docker-compose.yml build php-fpm
-        working-directory: ./
-
-      - name: Push PHP-FPM image to Docker Hub
-        run: docker-compose -f ./docker-compose.yml push php-fpm
+      - name: Tag and Push MySQL image
+        run: |
+          docker tag mysql:latest a6573/tp-scc:mysql
+          docker push a6573/tp-scc:mysql
         working-directory: ./
