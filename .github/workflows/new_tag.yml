@@ -34,12 +34,7 @@ jobs:
 
 
       - name: Create new tag
-        env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          git config --global user.email "auto@ipca.pt"
-          git config --global user.name "Automatic"
-          new_tag=${{ steps.version.outputs.version }}
-          echo $new_tag
-          git tag $new_tag
-          git push origin $new_tag
+        uses: anothrNick/github-tag-action@v1.12.2
+        with:
+            tag: ${{ steps.version.outputs.version }}
+            message: 'New version'
