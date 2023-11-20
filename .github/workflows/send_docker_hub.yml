@@ -25,6 +25,9 @@ jobs:
         run: docker-compose -f ./docker-compose.yml build
         working-directory: ./
 
+      - name: Wait for services to start
+        run: sleep 10
+
       - name: Tag and Push Memcached image
         run: |
           docker tag memcached:alpine a6573/tp-scc:memcached
@@ -39,6 +42,12 @@ jobs:
 
       - name: Tag and Push MySQL image
         run: |
-          docker tag mysql:latest a6573/tp-scc:mysql
+          docker tag mysql:8.0 a6573/tp-scc:mysql
           docker push a6573/tp-scc:mysql
+        working-directory: ./
+
+      - name: Tag and Push PHP-FPM image
+        run: |
+          docker tag alves-php-fpm:latest a6573/tp-scc:php-fpm
+          docker push a6573/tp-scc:php-fpm
         working-directory: ./
