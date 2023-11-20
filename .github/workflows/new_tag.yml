@@ -25,20 +25,19 @@ jobs:
         run: |
           cat $GITHUB_ENV
 
-      - name: Increment tag
-        id: increment_tag
-        run: |
-          IFS='.-' read -r major minor patch extra <<< "${current_tag#v}"
-          ((patch++))
-          new_tag="v$major.$minor.$patch$extra"
-          echo "New Tag: $new_tag"
-          echo "::set-output name=new_tag::$new_tag"
+      - name: Get next version
+        uses: reecetech/version-increment@2023.9.3
+        id: version
+        with:
+            scheme: semver
+            increment: patch
 
-          
+
       - name: Create new tag
         run: |
           git config --global user.email "auto@ipca.pt"
           git config --global user.name "Automatic"
-          new_tag=${{ steps.increment_tag.outputs.new_tag }}
+          new_tag=${{ steps.version.outputs.version }}
+          echo $new_tag
           git tag $new_tag
           git push origin $new_tag
