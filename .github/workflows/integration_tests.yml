@@ -35,7 +35,7 @@ jobs:
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
         cat .env
         ls -la
-        sudo cp * /var/www/html/
+        sudo cp -r * /var/www/html/
         sudo rm /var/www/html/index.html
         
     - name: Import Database
