@@ -12,12 +12,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+            fetch-depth: 0
 
       - name: Get latest tag
         id: latest_tag
         run: |
-          latest_tag=$(git describe --abbrev=0 --tags 2>/dev/null || echo "v0.0.0")
-          echo "::set-output name=latest_tag::$latest_tag"
+          latest_tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1))
+          echo "latest_tag=$latest_tag" >> $GITHUB_ENV
 
       - name: Increment tag
         id: increment_tag
@@ -30,8 +32,8 @@ jobs:
 
       - name: Create new tag
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "auto@ipca.pt"
+          git config --global user.name "Automatic"
           new_tag=${{ steps.increment_tag.outputs.new_tag }}
           git tag $new_tag
           git push origin $new_tag
