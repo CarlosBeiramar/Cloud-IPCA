@@ -10,28 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Get latest tag
-      id: latest_tag
-      run: |
-        latest_tag=$(git describe --abbrev=0 --tags)
-        echo "::set-output name=latest_tag::$latest_tag"
+      - name: Get latest tag
+        id: latest_tag
+        run: |
+          latest_tag=$(git describe --abbrev=0 --tags 2>/dev/null || echo "v0.0.0")
+          echo "::set-output name=latest_tag::$latest_tag"
 
-    - name: Increment tag
-      id: increment_tag
-      run: |
-        current_tag=${{ steps.latest_tag.outputs.latest_tag }}
-        IFS='.' read -r major minor patch <<< $(echo $current_tag | awk -F'v|-' '{print $2}')
-        ((patch++))
-        new_tag="v$major.$minor.$patch"
-        echo "::set-output name=new_tag::$new_tag"
+      - name: Increment tag
+        id: increment_tag
+        run: |
+          current_tag=${{ steps.latest_tag.outputs.latest_tag }}
+          IFS='.' read -r major minor patch <<< $(echo $current_tag | awk -F'v|-' '{print $2}')
+          ((patch++))
+          new_tag="v$major.$minor.$patch"
+          echo "::set-output name=new_tag::$new_tag"
 
-    - name: Create new tag
-      run: |
-        git config --global user.email "admin@ipca.pt"
-        git config --global user.name "Admin"
-        new_tag=${{ steps.increment_tag.outputs.new_tag }}
-        git tag $new_tag
-        git push origin $new_tag
+      - name: Create new tag
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          new_tag=${{ steps.increment_tag.outputs.new_tag }}
+          git tag $new_tag
+          git push origin $new_tag
