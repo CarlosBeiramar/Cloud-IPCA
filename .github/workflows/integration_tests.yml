@@ -29,7 +29,7 @@ jobs:
     - name: Create and Add Information to File
       run: |
         docker ps
-        echo "DB_HOST=cloud-ipca-mysql-1" > .env
+        echo "DB_HOST=cloud-ipca_mysql_1" > .env
         echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
