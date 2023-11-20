@@ -32,9 +32,12 @@ jobs:
             scheme: semver
             increment: patch
 
-
       - name: Create new tag
-        uses: anothrNick/github-tag-action@v1.12.2
+        uses: avakar/tag-and-release@v1
         with:
-            tag: ${{ steps.version.outputs.version }}
-            message: 'New version'
+          tag_name: ${{ steps.version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+
+
