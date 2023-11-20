@@ -20,8 +20,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and Push Memcached image
-        run: docker-compose -f docker-compose.yml build memcached
-        working-directory: ./docker-compose.yml
+        run: |
+          ls -la
+          docker-compose -f docker-compose.yml build memcached
+        working-directory: docker-compose.yml
   
       - name: Push Memcached image to Docker Hub
         run: docker-compose -f docker-compose.yml push memcached
