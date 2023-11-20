@@ -28,9 +28,7 @@ jobs:
             images: a6573/tp-scc
 
       - name: Build and Push Memcached image
-        run: |
-          ls -la
-          docker-compose -f ./docker-compose.yml build memcached
+        run: docker-compose -f ./docker-compose.yml build memcached
         working-directory: ./
   
       - name: Push Memcached image to Docker Hub
