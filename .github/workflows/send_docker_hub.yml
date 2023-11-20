@@ -38,17 +38,17 @@ jobs:
         working-directory: ./
 
       - name: Build and Push Webserver image
-        run: docker-compose -f docker-compose.yml build webserver
-        working-directory: ./docker-compose.yml
+        run: docker-compose -f ./docker-compose.yml build webserver
+        working-directory: ./
 
       - name: Push Webserver image to Docker Hub
-        run: docker-compose -f docker-compose.yml push webserver
-        working-directory: ./docker-compose.yml
+        run: docker-compose -f ./docker-compose.yml push webserver
+        working-directory: ./
 
       - name: Build and Push PHP-FPM image
-        run: docker-compose -f docker-compose.yml build php-fpm
-        working-directory: ./docker-compose.yml
+        run: docker-compose -f ./docker-compose.yml build php-fpm
+        working-directory: ./
 
       - name: Push PHP-FPM image to Docker Hub
-        run: docker-compose -f docker-compose.yml push php-fpm
-        working-directory: ./docker-compose.yml
+        run: docker-compose -f ./docker-compose.yml push php-fpm
+        working-directory: ./
