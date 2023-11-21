@@ -19,7 +19,7 @@ class Database
            
             $dotenv = Dotenv::createImmutable(__DIR__.'/../');
             $dotenv->load();
-            self::$connection = new \PDO('mysql:host=cloud-ipca_mysql_1;dbname=cloud;charset=utf8', "root", "root");
+            self::$connection = new \PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';charset=utf8', $_ENV['DB_USER'], $_ENV['DB_PASS']);
         }
         return self::$connection;
     }
