@@ -9,9 +9,6 @@ jobs:
   build-and-run:
     runs-on: ubuntu-latest
 
-    env:
-      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-      API_BASE_URL: http://127.0.0.1
 
     steps:
 
@@ -58,7 +55,7 @@ jobs:
         -H "X-Api-Key: $API_KEY" \
         -o collection.json
 
-        
+        sed -i 's/{{API_BASE_URL}}/http:\/\/127.0.0.1/g' collection.json
      
 
  
