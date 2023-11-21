@@ -1,0 +1,62 @@
+name: Integration Tests
+
+on:
+    pull_request:
+      branches:
+        - master
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+
+    - name: Set up Docker Compose
+      run:  |
+        docker-compose -f docker-compose.yml up -d
+
+    - name: Wait for services to start
+      run: sleep 10
+
+    - name: Install Composer dependencies
+      run: composer install
+
+    - name: Create and Add Information to File
+      run: |
+        echo "DB_HOST=cloud-ipca_mysql_1" > .env
+        echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
+        echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
+        echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
+       
+        
+    - name: Import Database
+      run: |
+        mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
+        mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
+       
+    - name: Download Collection From Postman
+      run: |
+        COLLECTION_UID=30816775-1a3bc6d6-7921-4a45-abd6-31f07e52d0da
+        API_KEY=${{ secrets.POSTMAN_API_KEY }}
+
+        curl -X GET \
+        "https://api.postman.com/collections/$COLLECTION_UID" \
+        -H "Content-Type: application/json" \
+        -H "X-Api-Key: $API_KEY" \
+        -o collection.json
+
+    - name: Run Postman Collection
+      run: |
+        newman run collection.json -e environment.json --insecure \
+          --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
+          --env-var "API_BASE_URL=http://127.0.0.1" 
+          
+
+    - name: Stop Docker Compose
+      run: |
+        sudo docker-compose down
