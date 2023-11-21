@@ -64,8 +64,7 @@ jobs:
 
     - name: Run Postman Collection
       run: |
-        newman run collection.json \ 
-          --environment environment.json --insecure --no-color \
+        newman run collection.json -e environment.json --insecure --no-color \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
           --env-var "API_BASE_URL=http://127.0.0.1" 
           
