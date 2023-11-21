@@ -55,8 +55,7 @@ jobs:
         -H "X-Api-Key: $API_KEY" \
         -o collection.json
 
-        sed -i 's/{{API_BASE_URL}}/http:\/\/127.0.0.1/g' collection.json
-     
+        
 
  
 
@@ -64,7 +63,7 @@ jobs:
 
     - name: Run Postman Collection
       run: |
-        newman run collection.json -e environment.json --insecure --no-color \
+        newman run collection.json -e environment.json --insecure \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
           --env-var "API_BASE_URL=http://127.0.0.1" 
           
