@@ -53,7 +53,6 @@ jobs:
 
     - name: Download Collection From Postman
       run: |
-        ls -la html
         pwd
         COLLECTION_UID=30816775-1a3bc6d6-7921-4a45-abd6-31f07e52d0da
         API_KEY=${{ secrets.POSTMAN_API_KEY }}
