@@ -15,15 +15,6 @@ jobs:
         with:
             fetch-depth: 0
 
-      - name: Get latest tag
-        id: latest_tag
-        run: |
-          latest_tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1))
-          echo "latest_tag=$latest_tag" >> $GITHUB_ENV
-
-      - name: Debug latest tag
-        run: |
-          cat $GITHUB_ENV
 
       - name: Get next version
         uses: reecetech/version-increment@2023.9.3

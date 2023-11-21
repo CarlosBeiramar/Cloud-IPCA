@@ -28,7 +28,7 @@ jobs:
         echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
         echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
-        cat .env
+  
 
     - name: Import Database
       run: |

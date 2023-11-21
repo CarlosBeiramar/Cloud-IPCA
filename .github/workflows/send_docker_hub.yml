@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Exit if not on master branch
-        if: endsWith(github.ref, 'master') == false
-        run: exit -1
   
       - name: Checkout code
         uses: actions/checkout@v2
@@ -42,7 +38,7 @@ jobs:
           echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
           echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
           echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
-          cat .env
+        
 
       - name: Import Database
         run: |
