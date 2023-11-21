@@ -58,20 +58,16 @@ jobs:
         -H "X-Api-Key: $API_KEY" \
         -o collection.json
 
-        sed -i 's/{{API_BASE_URL}}/http:\/\/127.0.0.1/g' collection.json
+        
      
 
-        cat environment.json
+ 
 
-
-    - name: Run Postman Collection test
-      run: |
-          curl -u 'admin@alunos.ipca.pt':'ABCDe12345@' http://127.0.0.1/api/auth
+    
 
     - name: Run Postman Collection
       run: |
         newman run collection.json \ 
-          --verbose \
           --environment environment.json --insecure --no-color \
           --env-var "POSTMAN_API_KEY=${{ secrets.POSTMAN_API_KEY }}" \
           --env-var "API_BASE_URL=http://127.0.0.1" 
