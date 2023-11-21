@@ -7,11 +7,11 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install Composer dependencies
         run: composer install --no-scripts --no-progress --no-suggest --prefer-dist
