@@ -61,6 +61,8 @@ jobs:
         -H "X-Api-Key: $API_KEY" \
         -o collection.json
 
+        cat collection.json
+
         curl -o environment.json -X GET \
         'https://api.postman.com/environments/30816775-41a87d82-b66a-4bec-b9b2-ec814454ba80' \
         -H 'X-Api-Key: $API_KEY'
