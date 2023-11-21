@@ -9,6 +9,12 @@ jobs:
   build-and-run:
     runs-on: ubuntu-latest
 
+    services:
+      docker:
+        image: docker:20.10.11
+        options: --privileged
+        ports:
+          - 80:80
 
     steps:
 
@@ -35,9 +41,6 @@ jobs:
         echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
         cat .env
         ls -la
-        COPY * /var/www/html/
-        sudo rm /var/www/html/index.html
-        ls -la html
         
     - name: Import Database
       run: |
