@@ -46,28 +46,31 @@ jobs:
           mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
 
       - name: mv files
-        run: sudo rsync -av --exclude='*.html' * /var/www/html/
+        run: |
+          docker ps
+          ls -la
+          docker cp * cloud-ipca_php-fpm_1:/var/www/html
 
       - name: Tag and Push Memcached image
         run: |
           docker tag memcached:alpine a6573/tp-scc:memcached
           docker push a6573/tp-scc:memcached
-        working-directory: /var/www/html
+        working-directory: ./
 
       - name: Tag and Push Nginx image
         run: |
           docker tag nginx:alpine a6573/tp-scc:nginx
           docker push a6573/tp-scc:nginx
-        working-directory: /var/www/html
+        working-directory: ./
 
       - name: Tag and Push MySQL image
         run: |
           docker tag mysql:8.0 a6573/tp-scc:mysql
           docker push a6573/tp-scc:mysql
-        working-directory: /var/www/html
+        working-directory: ./
 
       - name: Tag and Push PHP-FPM image
         run: |
           docker tag cloud-ipca_php-fpm:latest a6573/tp-scc:php-fpm
           docker push a6573/tp-scc:php-fpm
-        working-directory: /var/www/html
+        working-directory: ./
