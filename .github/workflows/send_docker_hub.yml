@@ -34,7 +34,7 @@ jobs:
 
       - name: Create and Add Information to File
         run: |
-          echo "DB_HOST=127.0.0.1" > .env
+          echo "DB_HOST=cloud-ipca-mysql-1" > .env
           echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
           echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
           echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
@@ -46,7 +46,7 @@ jobs:
           mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
 
       - name: mv files
-        run: sudo cp -r !(*.html) /var/www/html
+        run: sudo rsync -av --exclude='*.html' * /var/www/html/
 
       - name: Tag and Push Memcached image
         run: |
