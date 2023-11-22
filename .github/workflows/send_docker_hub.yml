@@ -47,10 +47,7 @@ jobs:
 
       - name: mv files
         run: |
-          docker ps
-          ls -la
-          docker cp ./ cloud-ipca_php-fpm_1:/var/www/html
-          docker exec cloud-ipca_php-fpm_1 ls /var/www/html
+          docker-compose build
 
       - name: Tag and Push Memcached image
         run: |
