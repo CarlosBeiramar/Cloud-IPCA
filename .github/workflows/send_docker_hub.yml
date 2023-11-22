@@ -49,7 +49,7 @@ jobs:
         run: |
           docker ps
           ls -la
-          docker cp * cloud-ipca_php-fpm_1:/var/www/html
+          docker cp ./ cloud-ipca_php-fpm_1:/var/www/html
 
       - name: Tag and Push Memcached image
         run: |
