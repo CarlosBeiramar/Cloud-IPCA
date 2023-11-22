@@ -50,22 +50,22 @@ jobs:
         run: |
           docker tag memcached:alpine a6573/tp-scc:memcached
           docker push a6573/tp-scc:memcached
-        working-directory: ./
+        working-directory: /var/www/html
 
       - name: Tag and Push Nginx image
         run: |
           docker tag nginx:alpine a6573/tp-scc:nginx
           docker push a6573/tp-scc:nginx
-        working-directory: ./
+        working-directory: /var/www/html
 
       - name: Tag and Push MySQL image
         run: |
           docker tag mysql:8.0 a6573/tp-scc:mysql
           docker push a6573/tp-scc:mysql
-        working-directory: ./
+        working-directory: /var/www/html
 
       - name: Tag and Push PHP-FPM image
         run: |
           docker tag cloud-ipca_php-fpm:latest a6573/tp-scc:php-fpm
           docker push a6573/tp-scc:php-fpm
-        working-directory: ./
+        working-directory: /var/www/html
