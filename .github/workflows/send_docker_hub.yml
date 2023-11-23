@@ -67,6 +67,12 @@ jobs:
       - name: Tag and Push MySQL image
         run: |
           docker tag mysql:8.0 a6573/tp-scc:mysql
+	  docker build \
+                --build-arg MYSQL_HOST=127.0.0.1 \
+		--build-arg MYSQL_USER=${{ secrets.MYSQL_USER }} \
+  		--build-arg MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
+                --build-arg MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+		-f ./phpdocker/mysql/Dockerfile -t a6573/tp-scc:mysql .
           docker push a6573/tp-scc:mysql
         working-directory: ./
 
