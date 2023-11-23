@@ -69,6 +69,6 @@ jobs:
 
       - name: Tag and Push PHP-FPM image
         run: |
-          docker tag phpdockerio/php:8.2-fpm a6573/tp-scc:php-fpm
+          docker tag cloud-ipca_php-fpm:latest a6573/tp-scc:php-fpm
           docker push a6573/tp-scc:php-fpm
         working-directory: ./
