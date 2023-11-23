@@ -73,6 +73,6 @@ jobs:
         working-directory: ./
         run: |
           docker tag cloud-ipca_php-fpm:latest a6573/tp-scc:php-fpm
-          docker build -t a6573/tp-scc:php-fpm .
+          docker build  -f ./phpdocker/php-fpm/Dockerfile -t a6573/tp-scc:php-fpm . 
           docker push a6573/tp-scc:php-fpm
         
