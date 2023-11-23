@@ -25,7 +25,7 @@ services:
             - '80:80'
 
     php-fpm:
-        image: phpdockerio/php:8.2-fpm
+        build: phpdocker/php-fpm
         working_dir: /var/www/html
         volumes:
             - './:/var/www/html'
