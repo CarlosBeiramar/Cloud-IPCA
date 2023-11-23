@@ -60,6 +60,7 @@ jobs:
       - name: Tag and Push Nginx image
         run: |
           docker tag nginx:alpine a6573/tp-scc:nginx
+          docker build  -f ./phpdocker/nginx/Dockerfile -t a6573/tp-scc:nginx .
           docker push a6573/tp-scc:nginx
         working-directory: ./
 
