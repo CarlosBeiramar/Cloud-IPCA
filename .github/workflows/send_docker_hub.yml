@@ -70,7 +70,7 @@ jobs:
         working-directory: ./
 
       - name: Tag and Push PHP-FPM image
-        working-directory: ./phpdocker/php-fpm
+        working-directory: ./
         run: |
           docker tag cloud-ipca_php-fpm:latest a6573/tp-scc:php-fpm
           docker build -t a6573/tp-scc:php-fpm .
