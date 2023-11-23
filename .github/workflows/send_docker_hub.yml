@@ -69,17 +69,10 @@ jobs:
           docker push a6573/tp-scc:mysql
         working-directory: ./
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
       - name: Tag and Push PHP-FPM image
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-        with:
-          context: .
-          file: ./phpdocker/php-fpm/Dockerfile
-          push: true
-          tags: php-fpm
-          labels: php-fpm
+        working-directory: ./phpdocker/php-fpm
+        run: |
+          docker tag cloud-ipca_php-fpm:latest a6573/tp-scc:php-fpm
+          docker build -t a6573/tp-scc:php-fpm .
+          docker push a6573/tp-scc:php-fpm
+        
