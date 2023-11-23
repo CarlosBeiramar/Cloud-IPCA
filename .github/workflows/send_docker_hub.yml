@@ -48,7 +48,6 @@ jobs:
       - name: mv files
         run: |
           docker ps
-          docker build -t cloud-ipca_php-fpm
 
       - name: Tag and Push Memcached image
         run: |
