@@ -49,9 +49,7 @@ jobs:
         run: |
           docker ps
 
-      - name: Build  images 
-        run: docker-compose -f docker-compose.yml build
-        working-directory: ./
+
 
       - name: Tag and Push Memcached image
         run: |
