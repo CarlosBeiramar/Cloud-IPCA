@@ -19,6 +19,16 @@ class Database
             $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
             $dotenv->load();
             self::$connection = new \PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';charset=utf8', $_ENV['DB_USER'], $_ENV['DB_PASS']);
+            if (!isset($_ENV['ENV']) || $_ENV['ENV'] == "dev") {
+                $sql = "SHOW TABLES FROM " . $_ENV['DB_NAME'];
+                $result = self::$connection->query($sql);
+                if (!$result || empty($result)) {
+                    $sql = @file_get_contents("sql.sql");
+                    if ($sql) {
+                        self::$connection->query($sql);
+                    }
+                }
+            }
         }
         return self::$connection;
     }
