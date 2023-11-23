@@ -67,6 +67,7 @@ jobs:
       - name: Tag and Push MySQL image
         run: |
           docker tag mysql:8.0 a6573/tp-scc:mysql
+          docker build  -f ./phpdocker/mysql/Dockerfile -t a6573/tp-scc:mysql .
           docker push a6573/tp-scc:mysql
         working-directory: ./
 

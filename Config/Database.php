@@ -19,7 +19,7 @@ class Database
             $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
             $dotenv->load();
             self::$connection = new \PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';charset=utf8', $_ENV['DB_USER'], $_ENV['DB_PASS']);
-            if (!isset($_ENV['ENV']) || $_ENV['ENV'] == "dev") {
+            if (!isset($_ENV['ENV_APP']) || $_ENV['ENV_APP'] == "dev") {
                 $sql = "SHOW TABLES FROM " . $_ENV['DB_NAME'];
                 $result = self::$connection->query($sql);
                 if (!$result || empty($result)) {
@@ -56,6 +56,7 @@ class Database
             }
             return null;
         } catch (\Exception $e) {
+            var_dump($e);
             return null;
         }
     }
@@ -84,6 +85,7 @@ class Database
             }
             return false;
         } catch (\Exception $e) {
+            var_dump($e);
             return false;
         }
     }
