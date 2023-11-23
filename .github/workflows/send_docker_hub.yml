@@ -49,6 +49,10 @@ jobs:
         run: |
           docker ps
 
+      - name: Build  images 
+        run: docker-compose -f docker-compose.yml build
+        working-directory: ./
+
       - name: Tag and Push Memcached image
         run: |
           docker tag memcached:alpine a6573/tp-scc:memcached
