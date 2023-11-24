@@ -34,7 +34,7 @@ jobs:
 
       - name: Create and Add Information to File
         run: |
-          echo "DB_HOST=172.104.156.150" > .env
+          echo "DB_HOST=139.144.162.162" > .env
           echo "DB_USER=${{ secrets.MYSQL_USER }}" >> .env
           echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
           echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
