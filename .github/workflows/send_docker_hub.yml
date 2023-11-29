@@ -38,11 +38,6 @@ jobs:
           echo "DB_PASS=${{ secrets.MYSQL_PASSWORD }}" >> .env
           echo "DB_NAME=${{ secrets.MYSQL_DATABASE }}" >> .env
         
-      - name: Import Database
-        run: |
-          mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "CREATE DATABASE IF NOT EXISTS ${{ secrets.MYSQL_DATABASE }};"
-          mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < sql.sql
-
       - name: Tag and Push Memcached image
         run: |
           docker tag memcached:alpine a6573/tp-scc:memcached
