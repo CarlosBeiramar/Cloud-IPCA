@@ -16,9 +16,11 @@ class Database
     public static function getConnection()
     {
         if (self::$connection == null) {
-            $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-            $dotenv->load();
-            self::$connection = new \PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';charset=utf8', $_ENV['DB_USER'], $_ENV['DB_PASS']);
+            if (!getenv('DB_HOST')) {
+                $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+                $dotenv->load();
+            }
+            self::$connection = new \PDO('mysql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_NAME') . ';charset=utf8', getenv('DB_USER'), getenv('DB_PASS'));
         }
         return self::$connection;
     }
